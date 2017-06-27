@@ -15,3 +15,5 @@ print('pandas: {}'.format(pandas.__version__))
 
 import sklearn
 print('sklearn: {}'.format(sklearn.__version__))
+
+import quandl
