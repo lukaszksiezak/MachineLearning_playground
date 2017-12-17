@@ -10,30 +10,21 @@ function [C, sigma] = dataset3Params(X, y, Xval, yval)
 % You need to return the following variables correctly.
 C = 1;
 sigma = 0.3;
-
 values = [0.01, 0.03, 0.1, 0.3,  1, 3, 10, 30];
-
 results = [];
-
 l = length(values);
 
 for c=1:l,
-    for sigma=1:l,
-      
-      
+    for sigma=1:l,      
       testC = values(c);
-      testSigma = values(sigma);
-      
+      testSigma = values(sigma);      
       model= svmTrain(X, y, testC, @(x1, x2) gaussianKernel(x1, x2, testSigma)); 
-      predictions = svmPredict(model, Xval);
-      
-      testError = mean(double(predictions ~= yval));
-      
-      results = [results; testC, testSigma, testError];
-      
+      predictions = svmPredict(model, Xval);      
+      testError = mean(double(predictions ~= yval));      
+      results = [results; testC, testSigma, testError];      
     end
 end
-
+ 
 [minError, minIndex] = min(results(:,3));
 
 C = results(minIndex,1);
